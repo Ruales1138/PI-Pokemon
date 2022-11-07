@@ -14,36 +14,70 @@ module.exports = (sequelize) => {
     name: {
       type: DataTypes.STRING,
       allowNull: false,
+      unique: true,
+      validate: {
+        len: [0, 15]
+      }
     },
 
     hp: {
       type: DataTypes.STRING,
       allowNull: true,
+      defaultValue: 0,
+      validate: {
+        min: 0,
+        max: 1000
+      }
     },
 
     attack: {
       type: DataTypes.STRING,
       allowNull: true,
+      defaultValue: 0,
+      validate: {
+        min: 0,
+        max: 1000
+      }
     },
 
     defense: {
       type: DataTypes.STRING,
       allowNull: true,
+      defaultValue: 0,
+      validate: {
+        min: 0,
+        max: 1000
+      }
     },
 
     speed: {
       type: DataTypes.STRING,
       allowNull: true,
+      defaultValue: 0,
+      validate: {
+        min: 0,
+        max: 1000
+      }
     },
 
     height: {
       type: DataTypes.STRING,
       allowNull: true,
+      defaultValue: 0,
+      validate: {
+        min: 0,
+        max: 1000
+      }
     },
 
     weight: {
       type: DataTypes.STRING,
       allowNull: true,
+      defaultValue: 0,
+      validate: {
+        min: 0,
+        max: 10000
+      }
     }
   },
   {timestamps: false});
