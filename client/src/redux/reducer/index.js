@@ -1,17 +1,17 @@
-import { GET_ALL_INFO } from "../actions";
+import { GET_DATA } from "../actions";
 
 const initialState = {
-    info: [],
-    infoCopy: []
+    data: [],
+    dataCopy: []
 };
 
 const rootReducer = (state = initialState, action) => {
     switch(action.type) {
-        case GET_ALL_INFO:
+        case GET_DATA:
             return {
                 ...state,
-                info: action.payload,
-                infoCopy: action.payload
+                data: action.payload,
+                dataCopy: action.payload
             };
 
         default: 

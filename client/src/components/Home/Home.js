@@ -2,20 +2,20 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import SearchBar from "../SearchBar/SearchBar";
 import Card from "../Card/Card";
-import { getAllInfo } from '../../redux/actions/index'
+import { getData } from '../../redux/actions/index'
 
 function Home() {
     const dispatch = useDispatch();
-    const info = useSelector(state => state.info);
+    const data = useSelector(state => state.data);
 
     useEffect(()=>{
-        dispatch(getAllInfo());
+        dispatch(getData());
     }, [dispatch]);
 
     return(
         <div>
             <SearchBar/>
-            {info.map(e => {
+            {data.map(e => {
                 return(
                     <Card
                         name={e.name}
