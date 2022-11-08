@@ -7,7 +7,6 @@ function Home() {
         <div>
             <SearchBar/>
             <h3>Home</h3>
-            <Card/>
         </div>
     )
 };
