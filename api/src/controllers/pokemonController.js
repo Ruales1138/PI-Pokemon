@@ -1,6 +1,5 @@
 const axios = require('axios');
-const { where } = require('sequelize');
-const { Pokemon } = require('../db');
+const { Pokemon, Type } = require('../db');
 
 async function getApiData() {
     try {
@@ -33,7 +32,29 @@ async function getApiData() {
 
 async function getDbData() {
     try {
-        let dbData = await Pokemon.findAll();
+        let dbData = await Pokemon.findAll({
+            include: [{
+                model: Type,
+                attributes: ["name"],
+                through: { attributes:[] }
+            }]
+        });
+        dbData = dbData.map(e => {
+            let arrayTypes = [];
+            e.types.map(e => arrayTypes.push(e.name.toString()))
+            return {
+                id: e.id,
+                name: e.name,
+                hp: e.hp,
+                attack: e.attack,
+                defense: e.defense,
+                speed: e.speed,
+                height: e.height, 
+                weight: e.weight,
+                types: arrayTypes
+            }
+        })
+
         return dbData;
         
     } catch (error) {
@@ -75,6 +96,7 @@ async function getDataByName(name) {
         }
         else {
             let dbData = await Pokemon.findOne({ where: { name: name } })
+            
             return dbData
         }
         
@@ -110,6 +132,16 @@ async function getDataById(id) {
         return error.message
     }
 };
-getDataById(2)
 
-module.exports = { getAllData, getDataByName, getDataById };
+async function getTypes() {
+    try {
+        let types = (await axios('https://pokeapi.co/api/v2/type')).data.results
+        .map(e => ({ name: e.name }))
+        await Type.bulkCreate(types)
+        
+    } catch (error) {
+        return error.message
+    }
+};
+
+module.exports = { getAllData, getDataByName, getDataById, getTypes };
