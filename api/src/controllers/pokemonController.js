@@ -95,8 +95,29 @@ async function getDataByName(name) {
             return apiData;
         }
         else {
-            let dbData = await Pokemon.findOne({ where: { name: name } })
-            
+            let e = await Pokemon.findOne({ 
+                where: { 
+                    name: name 
+                }, 
+                include: {
+                    model: Type,
+                    attributes: ["name"],
+                    through: { attributes:[] }
+                }
+            })
+            let arrayTypes = [];
+            e.types.map(e => arrayTypes.push(e.name.toString()))
+            let dbData = {
+                id: e.id,
+                name: e.name,
+                hp: e.hp,
+                attack: e.attack,
+                defense: e.defense,
+                speed: e.speed,
+                height: e.height, 
+                weight: e.weight,
+                types: arrayTypes
+            }
             return dbData
         }
         
@@ -124,7 +145,29 @@ async function getDataById(id) {
             return apiData;
         }
         else {
-            let dbData = await Pokemon.findByPk(id)
+            let e = await Pokemon.findOne({ 
+                where: { 
+                    id: id 
+                }, 
+                include: {
+                    model: Type,
+                    attributes: ["name"],
+                    through: { attributes:[] }
+                }
+            })
+            let arrayTypes = [];
+            e.types.map(e => arrayTypes.push(e.name.toString()))
+            let dbData = {
+                id: e.id,
+                name: e.name,
+                hp: e.hp,
+                attack: e.attack,
+                defense: e.defense,
+                speed: e.speed,
+                height: e.height, 
+                weight: e.weight,
+                types: arrayTypes
+            }
             return dbData
         }
         
