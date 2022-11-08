@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import SearchBar from "../SearchBar/SearchBar";
 import Card from "../Card/Card";
-import { getData } from '../../redux/actions/index'
+import { getData } from '../../redux/actions'
 
 function Home() {
     const dispatch = useDispatch();
@@ -15,15 +15,18 @@ function Home() {
     return(
         <div>
             <SearchBar/>
-            {data.map(e => {
-                return(
-                    <Card
-                        name={e.name}
-                        image={e.image}
-                        types={e.types}
-                    />
-                )
-            })}
+            {data.length? (
+                data.map(e => {
+                    return(
+                        <Card
+                            name={e.name}
+                            image={e.image}
+                            types={e.types}
+                        />
+                    )
+                })
+            ) : (<h4>Loading...</h4>)
+            }
         </div>
     )
 };

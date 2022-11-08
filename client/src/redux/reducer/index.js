@@ -1,4 +1,4 @@
-import { GET_DATA } from "../actions";
+import { GET_DATA, GET_DATA_BY_NAME } from "../actions";
 
 const initialState = {
     data: [],
@@ -13,6 +13,12 @@ const rootReducer = (state = initialState, action) => {
                 data: action.payload,
                 dataCopy: action.payload
             };
+
+        case GET_DATA_BY_NAME:
+            return {
+                ...state,
+                data: action.payload
+            }
 
         default: 
                 return { ...state }

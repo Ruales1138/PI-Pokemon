@@ -80,7 +80,7 @@ async function getDataByName(name) {
         let existing = (await axios('https://pokeapi.co/api/v2/pokemon?limit=1154')).data.results.map(e => e.name)
         if(existing.includes(name)) {
             let e = (await axios(`https://pokeapi.co/api/v2/pokemon/${name}`)).data
-            let apiData = {
+            let apiData = [{
                 id: e.id,
                 name: e.name,
                 hp: e.stats[0].base_stat,
@@ -91,7 +91,7 @@ async function getDataByName(name) {
                 weight: e.weight,
                 types: e.types.map(e => e.type.name),
                 image: e.sprites.other.dream_world.front_default
-            }
+            }]
             return apiData;
         }
         else {
@@ -107,7 +107,7 @@ async function getDataByName(name) {
             })
             let arrayTypes = [];
             e.types.map(e => arrayTypes.push(e.name.toString()))
-            let dbData = {
+            let dbData = [{
                 id: e.id,
                 name: e.name,
                 hp: e.hp,
@@ -117,7 +117,7 @@ async function getDataByName(name) {
                 height: e.height, 
                 weight: e.weight,
                 types: arrayTypes
-            }
+            }]
             return dbData
         }
         
