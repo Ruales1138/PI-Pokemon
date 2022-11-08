@@ -7,6 +7,7 @@ function Card(props) {
             <img src={props.image} width="300" height="200" alt=''/>
             <h4>Types:</h4>
             {props.types.map(e => <p>{e}</p>)}
+            <hr/>
         </div>
     )
 };
