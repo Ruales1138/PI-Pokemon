@@ -3,6 +3,7 @@ import axios from 'axios';
 export const GET_DATA = 'GET_DATA';
 export const GET_DATA_BY_NAME = 'GET_DATA_BY_NAME';
 export const ALPHABETICAL_ORDER = 'ALPHABETICAL_ORDER';
+export const CLEAN = 'CLEAN';
 
 export const getData = () => async (dispatch) => {
     let json = await axios.get('http://localhost:3001/pokemon');
@@ -17,3 +18,7 @@ export const getDataByName = (name) => async (dispatch) => {
 export const alphabeticalOrder = (payload) => {
     return { type: ALPHABETICAL_ORDER, payload: payload };
 };
+
+export const clean = () => {
+    return { type: CLEAN };
+  };

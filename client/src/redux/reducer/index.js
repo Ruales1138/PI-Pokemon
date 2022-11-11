@@ -1,4 +1,4 @@
-import { GET_DATA, GET_DATA_BY_NAME, ALPHABETICAL_ORDER } from "../actions";
+import { GET_DATA, GET_DATA_BY_NAME, ALPHABETICAL_ORDER, CLEAN } from "../actions";
 
 const initialState = {
     data: [],
@@ -44,6 +44,12 @@ const rootReducer = (state = initialState, action) => {
             return {
                 ...state,
                 data: alphaOrder,
+            };
+
+        case CLEAN:
+            return {
+                ...state,
+                data: []
             };
 
         default: 
