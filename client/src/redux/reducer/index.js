@@ -1,8 +1,18 @@
-import { GET_DATA, GET_DATA_BY_NAME, ALPHABETICAL_ORDER, ATTACK_ORDER, ORIGIN_FILTER, CLEAN } from "../actions";
+import { 
+    GET_DATA, 
+    GET_DATA_BY_NAME, 
+    GET_TYPES, 
+    ALPHABETICAL_ORDER, 
+    ATTACK_ORDER, 
+    ORIGIN_FILTER, 
+    TYPES_FILTER, 
+    CLEAN 
+} from "../actions";
 
 const initialState = {
     data: [],
-    dataCopy: []
+    dataCopy: [],
+    types: []
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -19,6 +29,12 @@ const rootReducer = (state = initialState, action) => {
                 ...state,
                 data: action.payload
             };
+
+        case GET_TYPES:
+            return {
+                ...state,
+                types: action.payload
+            }
 
         case ALPHABETICAL_ORDER:
             const alphaOrder = 
@@ -84,6 +100,16 @@ const rootReducer = (state = initialState, action) => {
             return {
                 ...state,
                 data: originFilter
+            };
+
+        case TYPES_FILTER:
+            const typesFilter = 
+                action.payload === 'All'
+                ? state.dataCopy
+                : state.dataCopy.filter(e => e.types?.includes(action.payload) ? e : null)
+            return {
+                ...state,
+                data: typesFilter
             };
 
         case CLEAN:

@@ -2,9 +2,11 @@ import axios from 'axios';
 
 export const GET_DATA = 'GET_DATA';
 export const GET_DATA_BY_NAME = 'GET_DATA_BY_NAME';
+export const GET_TYPES = 'GET_TYPES';
 export const ALPHABETICAL_ORDER = 'ALPHABETICAL_ORDER';
 export const ATTACK_ORDER = 'ATTACK_ORDER';
 export const ORIGIN_FILTER = 'ORIGIN_FILTER';
+export const TYPES_FILTER = 'TYPES_FILTER'
 export const CLEAN = 'CLEAN';
 
 export const getData = () => async (dispatch) => {
@@ -17,6 +19,11 @@ export const getDataByName = (name) => async (dispatch) => {
     return dispatch({ type: GET_DATA_BY_NAME, payload: json.data });
 };
 
+export const getTypes = () => async (dispatch) => {
+    let json = await axios.get('http://localhost:3001/type');
+    return dispatch({ type: GET_TYPES, payload: json.data });
+};
+
 export const alphabeticalOrder = (payload) => {
     return { type: ALPHABETICAL_ORDER, payload: payload };
 };
@@ -27,6 +34,10 @@ export const attackOrder = (payload) => {
 
 export const originFilter = (payload) => {
     return { type: ORIGIN_FILTER, payload: payload };
+};
+
+export const typesFilter = (payload) => {
+    return { type: TYPES_FILTER, payload: payload };
 };
 
 export const clean = () => {

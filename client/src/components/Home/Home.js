@@ -2,12 +2,13 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import SearchBar from "../SearchBar/SearchBar";
 import Card from "../Card/Card";
-import { getData, alphabeticalOrder, attackOrder, originFilter } from '../../redux/actions'
+import { getData, getTypes, alphabeticalOrder, attackOrder, originFilter, typesFilter } from '../../redux/actions'
 
 function Home() {
     const [currentPage, setCurrentPage] = useState(1);
     const [order, setOrder] = useState('');
     const dispatch = useDispatch();
+    const types = useSelector(state => state.types);
     const data = useSelector(state => state.data);
     const last = currentPage * 12;
     const fist = last - 12;
@@ -16,6 +17,7 @@ function Home() {
 
     useEffect(()=>{
         dispatch(getData());
+        dispatch(getTypes());
     }, [dispatch]);
     
     function scrollToTop() {
@@ -55,6 +57,12 @@ function Home() {
         }
     };
 
+    function handleTypes(e) {
+        dispatch(typesFilter(e.target.value));
+        setOrder(e.target.value);
+        setCurrentPage(1);
+    };
+
     return(
         <div>
             <SearchBar/>
@@ -63,6 +71,16 @@ function Home() {
                 <select onChange={e => handleOrigin(e)}>
                     <option value={'API'}>From API</option>
                     <option value={'DB'}>From DB</option>
+                </select>
+            </div>
+            <div>
+                <h4>Filter by types:</h4>
+                <select onChange={e => handleTypes(e)}>
+                    <option value={'All'}>All</option>
+                    {types.length > 0 && 
+                    types.map(e => (
+                        <option key={e.id} value={e.name}>{e.name}</option>
+                    ))}
                 </select>
             </div>
             <div>
