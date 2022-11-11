@@ -4,6 +4,7 @@ export const GET_DATA = 'GET_DATA';
 export const GET_DATA_BY_NAME = 'GET_DATA_BY_NAME';
 export const ALPHABETICAL_ORDER = 'ALPHABETICAL_ORDER';
 export const ATTACK_ORDER = 'ATTACK_ORDER';
+export const ORIGIN_FILTER = 'ORIGIN_FILTER';
 export const CLEAN = 'CLEAN';
 
 export const getData = () => async (dispatch) => {
@@ -22,6 +23,10 @@ export const alphabeticalOrder = (payload) => {
 
 export const attackOrder = (payload) => {
     return { type: ATTACK_ORDER, payload: payload };
+};
+
+export const originFilter = (payload) => {
+    return { type: ORIGIN_FILTER, payload: payload };
 };
 
 export const clean = () => {

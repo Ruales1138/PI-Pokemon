@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import SearchBar from "../SearchBar/SearchBar";
 import Card from "../Card/Card";
-import { getData, alphabeticalOrder, attackOrder } from '../../redux/actions'
+import { getData, alphabeticalOrder, attackOrder, originFilter } from '../../redux/actions'
 
 function Home() {
     const [currentPage, setCurrentPage] = useState(1);
@@ -35,6 +35,12 @@ function Home() {
         scrollToTop();
     };
 
+    function handleOrigin(e) {
+        dispatch(originFilter(e.target.value));
+        setOrder(e.target.value);
+        setCurrentPage(1);
+    };
+
     function handleOrder(e) {
         let value = e.target.value;
         if(value === 'A-Z' || value === 'Z-A') {
@@ -52,6 +58,13 @@ function Home() {
     return(
         <div>
             <SearchBar/>
+            <div>
+                <h4>Filter by origin:</h4>
+                <select onChange={e => handleOrigin(e)}>
+                    <option value={'API'}>From API</option>
+                    <option value={'DB'}>From DB</option>
+                </select>
+            </div>
             <div>
                 <h4>Sort by:</h4>
                 <select onChange={e => handleOrder(e)}>

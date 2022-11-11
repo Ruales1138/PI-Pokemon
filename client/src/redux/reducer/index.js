@@ -1,4 +1,4 @@
-import { GET_DATA, GET_DATA_BY_NAME, ALPHABETICAL_ORDER, ATTACK_ORDER, CLEAN } from "../actions";
+import { GET_DATA, GET_DATA_BY_NAME, ALPHABETICAL_ORDER, ATTACK_ORDER, ORIGIN_FILTER, CLEAN } from "../actions";
 
 const initialState = {
     data: [],
@@ -74,6 +74,16 @@ const rootReducer = (state = initialState, action) => {
             return {
                 ...state,
                 data: attackOrder
+            };
+
+        case ORIGIN_FILTER:
+            const originFilter =
+                action.payload === 'API'
+                ? state.dataCopy.filter(e => typeof e.id === 'number')
+                : state.dataCopy.filter(e => typeof e.id !== 'number')
+            return {
+                ...state,
+                data: originFilter
             };
 
         case CLEAN:
