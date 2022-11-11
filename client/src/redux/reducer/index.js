@@ -1,4 +1,4 @@
-import { GET_DATA, GET_DATA_BY_NAME } from "../actions";
+import { GET_DATA, GET_DATA_BY_NAME, ALPHABETICAL_ORDER } from "../actions";
 
 const initialState = {
     data: [],
@@ -18,7 +18,33 @@ const rootReducer = (state = initialState, action) => {
             return {
                 ...state,
                 data: action.payload
-            }
+            };
+
+        case ALPHABETICAL_ORDER:
+            const alphaOrder = 
+                action.payload === 'A-Z'
+                ? state.data.sort((a, b) => {
+                    if(a.name > b.name) {
+                        return 1;
+                    }
+                    if(a.name < b.name) {
+                        return -1;
+                    }
+                    return 0
+                })
+                : state.data.sort((a, b) => {
+                    if(a.name > b.name) {
+                        return -1;
+                    }
+                    if(a.name < b.name) {
+                        return 1;
+                    }
+                    return 0
+                })
+            return {
+                ...state,
+                data: alphaOrder,
+            };
 
         default: 
                 return { ...state }
