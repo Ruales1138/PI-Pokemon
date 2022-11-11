@@ -2,10 +2,11 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import SearchBar from "../SearchBar/SearchBar";
 import Card from "../Card/Card";
-import { getData } from '../../redux/actions'
+import { getData, alphabeticalOrder, attackOrder } from '../../redux/actions'
 
 function Home() {
     const [currentPage, setCurrentPage] = useState(1);
+    const [order, setOrder] = useState('');
     const dispatch = useDispatch();
     const data = useSelector(state => state.data);
     const last = currentPage * 12;
@@ -16,11 +17,11 @@ function Home() {
     useEffect(()=>{
         dispatch(getData());
     }, [dispatch]);
-
+    
     function scrollToTop() {
         window.scrollTo({
-          top: 0, 
-          behavior: 'auto'
+            top: 0, 
+            behavior: 'auto'
         });
       };
 
@@ -34,7 +35,19 @@ function Home() {
         scrollToTop();
     };
 
-    function handleOrder(e) {};
+    function handleOrder(e) {
+        let value = e.target.value;
+        if(value === 'A-Z' || value === 'Z-A') {
+            dispatch(alphabeticalOrder(value));
+            setOrder(value);
+            setCurrentPage(1);
+            console.log(order)
+        } else {
+            dispatch(attackOrder(value));
+            setOrder(value);
+            setCurrentPage(1);
+        }
+    };
 
     return(
         <div>
@@ -44,12 +57,15 @@ function Home() {
                 <select onChange={e => handleOrder(e)}>
                     <option value={'A-Z'}>Alphabetical order A-Z</option>
                     <option value={'Z-A'}>Alphabetical order Z-A</option>
+                    <option value={'MaxToMin'}>Attack from highest to lowest</option>
+                    <option value={'MinToMax'}>Attack from smallest to largest</option>
                 </select>
             </div>
             {currentData.length? (
                 currentData.map(e => {
                     return(
                         <Card
+                            key={e.id}
                             name={e.name}
                             image={e.image}
                             types={e.types}

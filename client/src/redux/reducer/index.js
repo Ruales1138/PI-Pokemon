@@ -1,4 +1,4 @@
-import { GET_DATA, GET_DATA_BY_NAME, ALPHABETICAL_ORDER, CLEAN } from "../actions";
+import { GET_DATA, GET_DATA_BY_NAME, ALPHABETICAL_ORDER, ATTACK_ORDER, CLEAN } from "../actions";
 
 const initialState = {
     data: [],
@@ -44,6 +44,36 @@ const rootReducer = (state = initialState, action) => {
             return {
                 ...state,
                 data: alphaOrder,
+            };
+
+        case ATTACK_ORDER:
+            const attackOrder = 
+                action.payload === 'MinToMax'
+                ? state.data.sort((a, b) => {
+                    if (parseInt(a.attack) > 
+                        parseInt(b.attack)) {
+                        return 1;
+                    }
+                    if (parseInt(a.attack) < 
+                        parseInt(b.attack)) {
+                        return -1;
+                    }
+                    return 0;
+                    })
+                : state.data.sort((a, b) => {
+                    if (parseInt(a.attack) > 
+                        parseInt(b.attack)) {
+                        return -1;
+                    }
+                    if (parseInt(a.attack) < 
+                        parseInt(b.attack)) {
+                        return 1;
+                    }
+                    return 0;
+                    })
+            return {
+                ...state,
+                data: attackOrder
             };
 
         case CLEAN:
