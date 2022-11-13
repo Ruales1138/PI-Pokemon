@@ -1,6 +1,7 @@
 import { 
     GET_DATA, 
-    GET_DATA_BY_NAME, 
+    GET_DATA_BY_NAME,
+    GET_DATA_BY_ID,
     GET_TYPES, 
     ALPHABETICAL_ORDER, 
     ATTACK_ORDER, 
@@ -12,6 +13,7 @@ import {
 const initialState = {
     data: [],
     dataCopy: [],
+    detail: {},
     types: []
 };
 
@@ -28,6 +30,12 @@ const rootReducer = (state = initialState, action) => {
             return {
                 ...state,
                 data: action.payload
+            };
+
+        case GET_DATA_BY_ID:
+            return {
+                ...state,
+                detail: action.payload
             };
 
         case GET_TYPES:

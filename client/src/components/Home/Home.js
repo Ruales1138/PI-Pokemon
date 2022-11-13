@@ -97,6 +97,7 @@ function Home() {
                     return(
                         <Card
                             key={e.id}
+                            id={e.id}
                             name={e.name}
                             image={e.image}
                             types={e.types}
