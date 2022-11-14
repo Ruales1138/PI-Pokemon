@@ -8,7 +8,7 @@ export const ALPHABETICAL_ORDER = 'ALPHABETICAL_ORDER';
 export const ATTACK_ORDER = 'ATTACK_ORDER';
 export const ORIGIN_FILTER = 'ORIGIN_FILTER';
 export const TYPES_FILTER = 'TYPES_FILTER'
-export const CLEAN = 'CLEAN';
+export const CLEAN_DETAIL = 'CLEAN_DETAIL';
 
 export const getData = () => async (dispatch) => {
     let json = await axios.get('http://localhost:3001/pokemon');
@@ -46,6 +46,6 @@ export const typesFilter = (payload) => {
     return { type: TYPES_FILTER, payload: payload };
 };
 
-export const clean = () => {
-    return { type: CLEAN };
+export const cleanDetail = () => {
+    return { type: CLEAN_DETAIL };
   };

@@ -7,7 +7,7 @@ import {
     ATTACK_ORDER, 
     ORIGIN_FILTER, 
     TYPES_FILTER, 
-    CLEAN 
+    CLEAN_DETAIL 
 } from "../actions";
 
 const initialState = {
@@ -120,10 +120,10 @@ const rootReducer = (state = initialState, action) => {
                 data: typesFilter
             };
 
-        case CLEAN:
+        case CLEAN_DETAIL:
             return {
                 ...state,
-                data: []
+                detail: {}
             };
 
         default: 

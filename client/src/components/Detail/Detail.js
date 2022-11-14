@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import { getDataById } from '../../redux/actions';
+import { getDataById, cleanDetail } from '../../redux/actions';
 
 function Detail(props) {
     const dispatch = useDispatch();
@@ -9,6 +9,9 @@ function Detail(props) {
 
     useEffect(()=>{
         dispatch(getDataById(id));
+        return function () {
+            dispatch(cleanDetail());
+          };
     }, [dispatch, id]);
 
     return detail.name? (
