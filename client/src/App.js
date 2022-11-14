@@ -9,7 +9,7 @@ function App() {
     <div className="App">
       <Route exact path='/' component={InitialPage}/>
       <Route exact path='/pokemon' component={Home}/>
-      <Route exact path='/pokemon/:id' component={Detail}/>
+      <Route exact path='/pokemon/:id' render={({match}) => <Detail match={match}/>}/>
     </div>
   );
 };
