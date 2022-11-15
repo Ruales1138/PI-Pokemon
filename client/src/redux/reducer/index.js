@@ -3,6 +3,7 @@ import {
     GET_DATA_BY_NAME,
     GET_DATA_BY_ID,
     GET_TYPES, 
+    GET_NAMES,
     ALPHABETICAL_ORDER, 
     ATTACK_ORDER, 
     ORIGIN_FILTER, 
@@ -14,7 +15,8 @@ const initialState = {
     data: [],
     dataCopy: [],
     detail: {},
-    types: []
+    types: [],
+    names: []
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -42,7 +44,13 @@ const rootReducer = (state = initialState, action) => {
             return {
                 ...state,
                 types: action.payload
-            }
+            };
+
+        case GET_NAMES:
+            return {
+                ...state,
+                names: action.payload
+            };
 
         case ALPHABETICAL_ORDER:
             const alphaOrder = 

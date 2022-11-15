@@ -4,6 +4,7 @@ export const GET_DATA = 'GET_DATA';
 export const GET_DATA_BY_NAME = 'GET_DATA_BY_NAME';
 export const GET_DATA_BY_ID = 'GET_DATA_BY_ID';
 export const GET_TYPES = 'GET_TYPES';
+export const GET_NAMES = 'GET_NAMES';
 export const ALPHABETICAL_ORDER = 'ALPHABETICAL_ORDER';
 export const ATTACK_ORDER = 'ATTACK_ORDER';
 export const ORIGIN_FILTER = 'ORIGIN_FILTER';
@@ -25,15 +26,21 @@ export const getDataById = (id) => async (dispatch) => {
     return dispatch({ type: GET_DATA_BY_ID, payload: json.data });
 };
 
-export const create = (payload) => async (dispatch) => {
-    let json = await axios.post('http://localhost:3001/pkemon', payload);
-    return json;
-};
-
 export const getTypes = () => async (dispatch) => {
     let json = await axios.get('http://localhost:3001/type');
     return dispatch({ type: GET_TYPES, payload: json.data });
 };
+
+export const getNames = () => async (dispatch) => {
+    let json = await axios.get('http://localhost:3001/name');
+    return dispatch({ type: GET_NAMES, payload: json.data });
+};
+
+export const create = (payload) => async (dispatch) => {
+    let json = await axios.post('http://localhost:3001/pokemon', payload);
+    return json;
+};
+
 
 export const alphabeticalOrder = (payload) => {
     return { type: ALPHABETICAL_ORDER, payload: payload };
