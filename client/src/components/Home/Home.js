@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import SearchBar from "../SearchBar/SearchBar";
 import Card from "../Card/Card";
+import { Link } from "react-router-dom";
 import { getData, getTypes, alphabeticalOrder, attackOrder, originFilter, typesFilter } from '../../redux/actions'
 
 function Home() {
@@ -92,6 +93,7 @@ function Home() {
                     <option value={'MinToMax'}>Attack from smallest to largest</option>
                 </select>
             </div>
+            <Link to='/create'>Create Pokemon</Link>
             {currentData.length? (
                 currentData.map(e => {
                     return(

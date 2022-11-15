@@ -25,6 +25,11 @@ export const getDataById = (id) => async (dispatch) => {
     return dispatch({ type: GET_DATA_BY_ID, payload: json.data });
 };
 
+export const create = (payload) => async (dispatch) => {
+    let json = await axios.post('http://localhost:3001/pkemon', payload);
+    return json;
+};
+
 export const getTypes = () => async (dispatch) => {
     let json = await axios.get('http://localhost:3001/type');
     return dispatch({ type: GET_TYPES, payload: json.data });

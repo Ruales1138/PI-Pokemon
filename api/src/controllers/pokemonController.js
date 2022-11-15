@@ -187,4 +187,15 @@ async function getTypes() {
     }
 };
 
-module.exports = { getAllData, getDataByName, getDataById, getTypes };
+async function getNames() {
+    try {
+        let names = (await axios('https://pokeapi.co/api/v2/pokemon?limit=1154')).data.results
+        .map(e => ({ name: e.name }))
+        return names
+        
+    } catch (error) {
+        return error.message
+    }
+};
+
+module.exports = { getAllData, getDataByName, getDataById, getTypes, getNames };
