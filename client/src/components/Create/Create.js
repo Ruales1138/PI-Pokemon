@@ -156,7 +156,7 @@ function Create() {
             </select>
             <p>{selected.length} added types</p>
 
-            <button disabled={Object.entries(errors).length === 0 ? false : true} type="submit">Create</button>
+            <button disabled={newItem.name && Object.entries(errors).length === 0 ? false : true} type="submit">Create</button>
             <p>{message}</p>
         </form>
     )
