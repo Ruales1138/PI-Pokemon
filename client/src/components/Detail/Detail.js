@@ -17,7 +17,7 @@ function Detail(props) {
     return detail.name? (
         <div>
             <h1>{detail.name.charAt(0).toUpperCase() + detail.name.slice(1)}</h1>
-            <img src={detail.image} width="300" height="200" alt=''/>
+            <img src={detail.image} height="200" alt=''/>
             <ul>
                 <li>Id: {detail.id}</li>
                 <li>Hp: {detail.hp}</li>
