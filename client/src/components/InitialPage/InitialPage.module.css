@@ -1,0 +1,27 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content:baseline;
+    align-items: center;
+    height: 400px;
+    padding-top: 10%;
+}
+
+.link{
+    font-weight: 750;
+    text-decoration: none;
+    border-radius: 30px;
+    background-color: #204fb3;
+    padding: 10px 10px;
+    color: rgb(255, 230, 0);
+    font-size: 20px;
+    width: min-content;
+    box-shadow: -4px 4px #132f6b;
+}
+
+.link:hover{
+    background-color: rgb(255, 208, 0);
+    color: #204fb3;
+    cursor: pointer;
+    box-shadow: -4px 4px rgb(126, 103, 0);
+}

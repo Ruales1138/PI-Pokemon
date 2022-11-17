@@ -51,6 +51,7 @@ async function getDbData() {
                 speed: e.speed,
                 height: e.height, 
                 weight: e.weight,
+                image: e.image,
                 types: arrayTypes
             }
         })
@@ -116,6 +117,7 @@ async function getDataByName(name) {
                 speed: e.speed,
                 height: e.height, 
                 weight: e.weight,
+                image: e.image,
                 types: arrayTypes
             }]
             return dbData
@@ -166,6 +168,7 @@ async function getDataById(id) {
                 speed: e.speed,
                 height: e.height, 
                 weight: e.weight,
+                image: e.image,
                 types: arrayTypes
             }
             return dbData

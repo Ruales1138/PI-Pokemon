@@ -78,6 +78,12 @@ module.exports = (sequelize) => {
         min: 0,
         max: 10000
       }
+    },
+
+    image: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      defaultValue: 'https://cdn-icons-png.flaticon.com/512/528/528101.png'
     }
   },
   {timestamps: false});
