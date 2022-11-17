@@ -1,11 +1,11 @@
 const { Router } = require('express');
-const { getNames } = require('../controllers/pokemonController');
+const { getAllNames } = require('../controllers/pokemonController');
 
 const router = Router();
 
 router.get('/', async (req, res) => {
     try {
-        const allNames = await getNames();
+        const allNames = await getAllNames();
         res.send(allNames);
         
     } catch (error) {

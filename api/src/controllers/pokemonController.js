@@ -187,15 +187,43 @@ async function getTypes() {
     }
 };
 
-async function getNames() {
+async function getApiNames() {
     try {
-        let names = (await axios('https://pokeapi.co/api/v2/pokemon?limit=1154')).data.results
+        let apiNames = (await axios('https://pokeapi.co/api/v2/pokemon?limit=1154')).data.results
         .map(e => ({ name: e.name }))
-        return names
+        return apiNames
         
     } catch (error) {
         return error.message
     }
 };
 
-module.exports = { getAllData, getDataByName, getDataById, getTypes, getNames };
+async function getDbNames() {
+    try {
+        let dbNames = await Pokemon.findAll();
+        dbNames = dbNames.map(e => {
+            return {
+                name: e.name
+            }
+        })
+        return dbNames
+        
+    } catch (error) {
+        return error.message
+    }
+};
+
+async function getAllNames() {
+    try {
+        let apiNames = await getApiNames();
+        let dbNames = await getDbNames();
+    
+        let allNames = apiNames.concat(dbNames);
+        return allNames;
+        
+    } catch (error) {
+        return error.message
+    }
+};
+
+module.exports = { getAllData, getDataByName, getDataById, getTypes, getAllNames };
