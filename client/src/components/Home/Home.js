@@ -3,7 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import SearchBar from "../SearchBar/SearchBar";
 import Card from "../Card/Card";
 import { Link } from "react-router-dom";
-import { getData, getTypes, alphabeticalOrder, attackOrder, originFilter, typesFilter } from '../../redux/actions'
+import { getData, getTypes, alphabeticalOrder, attackOrder, originFilter, typesFilter } from '../../redux/actions';
+import style from './Home.module.css';
 
 function Home() {
     const [currentPage, setCurrentPage] = useState(1);
@@ -66,55 +67,78 @@ function Home() {
 
     return(
         <div>
-            <SearchBar/>
-            <div>
-                <h4>Filter by origin:</h4>
-                <select onChange={e => handleOrigin(e)}>
-                    <option value={'API'}>From API</option>
-                    <option value={'DB'}>From DB</option>
-                </select>
-            </div>
-            <div>
-                <h4>Filter by types:</h4>
-                <select onChange={e => handleTypes(e)}>
-                    <option value={'All'}>All</option>
-                    {types.length > 0 && 
-                    types.map(e => (
-                        <option key={e.id} value={e.name}>{e.name}</option>
-                    ))}
-                </select>
-            </div>
-            <div>
-                <h4>Sort by:</h4>
-                <select onChange={e => handleOrder(e)}>
-                    <option value={'A-Z'}>Alphabetical order A-Z</option>
-                    <option value={'Z-A'}>Alphabetical order Z-A</option>
-                    <option value={'MaxToMin'}>Attack from highest to lowest</option>
-                    <option value={'MinToMax'}>Attack from smallest to largest</option>
-                </select>
-            </div>
-            <Link to='/create'>Create Pokemon</Link>
-            {currentData.length? (
-                currentData.map(e => {
-                    return(
-                        <Card
-                            key={e.id}
-                            id={e.id}
-                            name={e.name}
-                            image={e.image}
-                            types={e.types}
-                        />
-                    )
-                })
-            ) : (<h4>Loading...</h4>)
-            }
-            {currentData.length? (
+            <nav>
+                <SearchBar/>
+            </nav>
+
+            <aside>
                 <div>
-                    <button disabled={currentPage === 1? true : false} onClick={prevPage}>{'< Prev'}</button>
-                    <p>{currentPage} of {totalPages}</p>
-                    <button disabled={currentPage === totalPages? true : false} onClick={nextPage}>{'Next >'}</button>
+                    <Link to='/create'>Create Pokemon</Link>
                 </div>
-            ) : (<p></p>)}
+                <div>
+                    <h4>Sort by:</h4>
+                    <select onChange={e => handleOrder(e)}>
+                        <option value={'A-Z'}>A-Z</option>
+                        <option value={'Z-A'}>Z-A</option>
+                        <option value={'MaxToMin'}>Attack major to minor</option>
+                        <option value={'MinToMax'}>Attack minor to major</option>
+                    </select>
+                </div>
+                <div>
+                    <h4>Filter by origin:</h4>
+                    <select onChange={e => handleOrigin(e)}>
+                        <option value={'API'}>From API</option>
+                        <option value={'DB'}>From DB</option>
+                    </select>
+                </div>
+                <div>
+                    <h4>Filter by types:</h4>
+                    <select onChange={e => handleTypes(e)}>
+                        <option value={'All'}>All</option>
+                        {types.length > 0 && 
+                        types.map(e => (
+                            <option key={e.id} value={e.name}>{e.name}</option>
+                        ))}
+                    </select>
+                </div>
+            </aside>
+
+            <section>
+                {currentData.length? (
+                    currentData.map(e => {
+                        return(
+                            <article>
+                                <Card
+                                    key={e.id}
+                                    id={e.id}
+                                    name={e.name}
+                                    image={e.image}
+                                    types={e.types}
+                                />
+                            </article>
+                        )
+                    })
+                    ) : (<h4>Loading...</h4>)
+                }
+            </section>
+
+            <footer>
+                {currentData.length? (
+                    <div>
+                        <button 
+                            className={style.pagination} 
+                            disabled={currentPage === 1? true : false} 
+                            onClick={prevPage}
+                        >{'< Prev'}</button>
+                        <p className={style.pagination}>{currentPage} of {totalPages}</p>
+                        <button 
+                            className={style.pagination} 
+                            disabled={currentPage === totalPages? true : false} 
+                            onClick={nextPage}
+                        >{'Next >'}</button>
+                    </div>
+                ) : (<p></p>)}
+            </footer>
         </div>
     )
 };

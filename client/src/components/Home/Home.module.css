@@ -1,0 +1,57 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+nav{
+    background-color: lightblue;
+    height: 50px;
+    line-height: 45px;
+}
+
+aside{
+    background: lightsalmon;
+    float: left;
+    width: calc(20% - 20px);
+    padding: 10px;
+    height: max-content;
+}
+
+aside div{
+    margin-top: 30px;
+}
+
+section{
+    background: lightgreen;
+    float: left;
+    width: 80%;
+    min-height: 340px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+article{
+    background-color: lightseagreen;
+    margin: 50px;
+    width: 24%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+footer{
+    background-color: rgb(255, 255, 128);
+    float: right;
+    width: 80%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+footer div{
+    display: flex;
+    justify-content: center;
+}
+
+.pagination{
+    margin: 10px;
+}
