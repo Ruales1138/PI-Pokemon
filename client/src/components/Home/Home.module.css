@@ -21,6 +21,14 @@ aside div{
     margin-top: 30px;
 }
 
+.link{
+    text-decoration: none;
+}
+
+.link:hover{
+    color: blue;
+}
+
 section{
     background-color: white;
     float: left;
@@ -29,6 +37,12 @@ section{
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+}
+
+select{
+    background-color: #EBEDEF;
+    font-weight: 750;
+    border: none;
 }
 
 article{
@@ -53,6 +67,17 @@ footer div{
     justify-content: center;
 }
 
-.pagination{
+footer div p{
     margin: 10px;
+    border: none;
+}
+
+footer div button{
+    margin: 10px;
+    border: none;
+}
+
+footer div button:enabled:hover{
+    cursor: pointer;
+    color: blue;
 }

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { getDataByName } from "../../redux/actions";
+import style from './SearchBar.module.css';
 
 function SearchBar() {
     const [name, setName] = useState('');
@@ -17,10 +18,10 @@ function SearchBar() {
     };
 
     return (
-        <div>
+        <div id={style.container}>
             <form onSubmit={e => handleSubmit(e)}>
                 <input value={name} onChange={e => handleChange(e)}/>
-                <button type="submit">Search</button>
+                <button id={style.search} type="submit">Search</button>
             </form>
         </div>
     )

@@ -73,13 +73,15 @@ function Home() {
 
             <aside>
                 <div>
-                    <Link to='/create'>Create Pokemon</Link>
+                    <Link className={style.link} to='/create'>
+                        <h4>Create Pokemon</h4>
+                    </Link>
                 </div>
-                <div>
+                <div className={style.selectContainer}>
                     <h4>Sort by:</h4>
                     <select onChange={e => handleOrder(e)}>
-                        <option value={'A-Z'}>A-Z</option>
-                        <option value={'Z-A'}>Z-A</option>
+                        <option value={'A-Z'}>Alphabetical order A-Z</option>
+                        <option value={'Z-A'}>Alphabetical order Z-A</option>
                         <option value={'MaxToMin'}>Attack major to minor</option>
                         <option value={'MinToMax'}>Attack minor to major</option>
                     </select>
@@ -94,7 +96,7 @@ function Home() {
                 <div>
                     <h4>Filter by types:</h4>
                     <select onChange={e => handleTypes(e)}>
-                        <option value={'All'}>All</option>
+                        <option value={'All'}>All types</option>
                         {types.length > 0 && 
                         types.map(e => (
                             <option key={e.id} value={e.name}>{e.name}</option>
@@ -125,17 +127,9 @@ function Home() {
             <footer>
                 {currentData.length? (
                     <div>
-                        <button 
-                            className={style.pagination} 
-                            disabled={currentPage === 1? true : false} 
-                            onClick={prevPage}
-                        >{'< Prev'}</button>
-                        <p className={style.pagination}>{currentPage} of {totalPages}</p>
-                        <button 
-                            className={style.pagination} 
-                            disabled={currentPage === totalPages? true : false} 
-                            onClick={nextPage}
-                        >{'Next >'}</button>
+                        <button disabled={currentPage === 1? true : false} onClick={prevPage}>{'< Prev'}</button>
+                        <p>{currentPage} of {totalPages}</p>
+                        <button disabled={currentPage === totalPages? true : false} onClick={nextPage}>{'Next >'}</button>
                     </div>
                 ) : (<p></p>)}
             </footer>
