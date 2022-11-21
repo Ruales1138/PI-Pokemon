@@ -4,17 +4,17 @@
 }
 
 nav{
-    background-color: lightblue;
+    background-color: #fff16a;
     height: 50px;
     line-height: 45px;
 }
 
 aside{
-    background: lightsalmon;
+    background: #EBEDEF;
     float: left;
     width: calc(20% - 20px);
     padding: 10px;
-    height: max-content;
+    height: unset;
 }
 
 aside div{
@@ -22,7 +22,7 @@ aside div{
 }
 
 section{
-    background: lightgreen;
+    background-color: white;
     float: left;
     width: 80%;
     min-height: 340px;
@@ -32,15 +32,16 @@ section{
 }
 
 article{
-    background-color: lightseagreen;
-    margin: 50px;
+    background-color: white;
+    margin: 40px;
     width: 24%;
     padding-top: 20px;
     padding-bottom: 20px;
+    border: #CCD1D1 solid 1px;
 }
 
 footer{
-    background-color: rgb(255, 255, 128);
+    background-color: #EBEDEF;
     float: right;
     width: 80%;
     padding-top: 20px;

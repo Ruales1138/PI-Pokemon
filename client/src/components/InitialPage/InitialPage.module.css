@@ -1,10 +1,12 @@
 .container{
+    background-color: white;
     display: flex;
     flex-direction: column;
     justify-content:baseline;
     align-items: center;
     height: 400px;
     padding-top: 10%;
+    padding-bottom: 6.5%;
 }
 
 .link{
