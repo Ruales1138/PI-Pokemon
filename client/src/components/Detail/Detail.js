@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { getDataById, cleanDetail } from '../../redux/actions';
+import style from './Detail.module.css'
 
 function Detail(props) {
     const dispatch = useDispatch();
@@ -16,19 +17,22 @@ function Detail(props) {
 
     return detail.name? (
         <div>
-            <h1>{detail.name.charAt(0).toUpperCase() + detail.name.slice(1)}</h1>
-            <img src={detail.image} height="200" alt=''/>
-            <ul>
-                <li>Id: {detail.id}</li>
-                <li>Hp: {detail.hp}</li>
-                <li>Attack: {detail.attack}</li>
-                <li>Defense: {detail.defense}</li>
-                <li>Speed: {detail.speed}</li>
-                <li>Height: {detail.height}</li>
-                <li>Weight: {detail.weight}</li>
-                <li>Types: </li>
-                {detail.types.map(e => <p key={e}>{e.charAt(0).toUpperCase() + e.slice(1)}</p>)}
-            </ul>
+            <nav>
+                <h1>Pokemon details</h1>
+            </nav>
+            <div id={style.detailContainer}>
+                <h1 className={style.detail}>{detail.name.charAt(0).toUpperCase() + detail.name.slice(1)}</h1>
+                <img className={style.detail} src={detail.image} width='200' height="200" alt=''/>
+                <h4 className={style.detail}>Id: {detail.id}</h4>
+                <h4 className={style.detail}>Hp: {detail.hp}</h4>
+                <h4 className={style.detail}>Attack: {detail.attack}</h4>
+                <h4 className={style.detail}>Defense: {detail.defense}</h4>
+                <h4 className={style.detail}>Speed: {detail.speed}</h4>
+                <h4 className={style.detail}>Height: {detail.height}</h4>
+                <h4 className={style.detail}>Weight: {detail.weight}</h4>
+                <h4 className={style.detail}>Types: </h4>
+                {detail.types.map(e => <h4 key={e}>{e.charAt(0).toUpperCase() + e.slice(1)}</h4>)}
+            </div>
         </div>
     ) : (<h4>Loading...</h4>)
 };
