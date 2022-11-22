@@ -120,7 +120,7 @@ function Home() {
                             </article>
                         )
                     })
-                    ) : (<h4>Loading...</h4>)
+                    ) : (<h4 className={style.loading}>Loading...</h4>)
                 }
             </section>
 

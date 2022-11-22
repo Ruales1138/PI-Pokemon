@@ -34,7 +34,7 @@ function Detail(props) {
                 {detail.types.map(e => <h4 key={e}>{e.charAt(0).toUpperCase() + e.slice(1)}</h4>)}
             </div>
         </div>
-    ) : (<h4>Loading...</h4>)
+    ) : (<h4 className={style.loading}>Loading...</h4>)
 };
 
 export default Detail;

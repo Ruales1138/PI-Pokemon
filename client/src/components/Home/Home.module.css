@@ -83,3 +83,7 @@ footer div button:enabled:hover{
     cursor: pointer;
     color: blue;
 }
+
+.loading{
+    padding: 20%;
+}
