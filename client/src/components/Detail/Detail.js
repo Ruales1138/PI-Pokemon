@@ -18,7 +18,7 @@ function Detail(props) {
     return detail.name? (
         <div>
             <nav>
-                <h1>Pokemon details</h1>
+                <h1>Pokemon Details</h1>
             </nav>
             <div id={style.detailContainer}>
                 <h1 className={style.detail}>{detail.name.charAt(0).toUpperCase() + detail.name.slice(1)}</h1>
