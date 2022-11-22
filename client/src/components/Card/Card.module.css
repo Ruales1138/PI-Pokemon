@@ -1,0 +1,12 @@
+.card{
+    padding: 5px;
+}
+
+.link{
+    text-decoration: none;
+    color: #5B2C6F;
+}
+
+.link:hover{
+    color: blue;
+}
