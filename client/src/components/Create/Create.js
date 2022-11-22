@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import { getNames, getTypes, create } from '../../redux/actions'
+import { getNames, getTypes, create } from '../../redux/actions';
+import style from './Create.module.css';
 
 function Create() {
     const dispatch = useDispatch();
@@ -91,7 +92,7 @@ function Create() {
         e.preventDefault();
         if(Object.entries(errors).length === 0 && newItem.name){
             let newData = {
-                name: newItem.name,
+                name: newItem.name.toLocaleLowerCase(),
                 hp: newItem.hp,
                 attack: newItem.attack,
                 defense: newItem.defense,
@@ -116,49 +117,70 @@ function Create() {
     };
 
     return (
-        <form onSubmit={e => handleSubmit(e)}>
-            <label>Name: </label>
-            <input name='name' value={newItem.name} onChange={e => handleChange(e)}/>
-            {errors.name && (<p>{errors.name}</p>)}
+        <div>
+            <nav>
+                <h1>Create Pokemon</h1>
+            </nav>
+            <form id={style.formContainer} onSubmit={e => handleSubmit(e)}>
+                <label className={style.form}>
+                    <h4>Name: </h4>
+                </label>
+                <input className={style.form} name='name' value={newItem.name} onChange={e => handleChange(e)}/>
+                {errors.name && (<p className={style.form}>{errors.name}</p>)}
 
-            <label>Hp: </label>
-            <input name='hp' value={newItem.hp} onChange={e => handleChange(e)}/>
-            {errors.hp && (<p>{errors.hp}</p>)}
+                <label className={style.form}>
+                    <h4>Hp: </h4>
+                </label>
+                <input className={style.form} name='hp' value={newItem.hp} onChange={e => handleChange(e)}/>
+                {errors.hp && (<p className={style.form}>{errors.hp}</p>)}
 
-            <label>Attack: </label>
-            <input name='attack' value={newItem.attack} onChange={e => handleChange(e)}/>
-            {errors.attack && (<p>{errors.attack}</p>)}
+                <label className={style.form}>
+                    <h4>Attack: </h4> 
+                </label>
+                <input className={style.form} name='attack' value={newItem.attack} onChange={e => handleChange(e)}/>
+                {errors.attack && (<p className={style.form}>{errors.attack}</p>)}
 
-            <label>Defense: </label>
-            <input name='defense' value={newItem.defense} onChange={e => handleChange(e)}/>
-            {errors.defense && (<p>{errors.defense}</p>)}
+                <label className={style.form}>
+                    <h4>Defense: </h4>
+                </label>
+                <input className={style.form} name='defense' value={newItem.defense} onChange={e => handleChange(e)}/>
+                {errors.defense && (<p className={style.form}>{errors.defense}</p>)}
 
-            <label>Speed: </label>
-            <input name='speed' value={newItem.speed} onChange={e => handleChange(e)}/>
-            {errors.speed && (<p>{errors.speed}</p>)}
+                <label className={style.form}>
+                    <h4>Speed: </h4>
+                </label>
+                <input className={style.form} name='speed' value={newItem.speed} onChange={e => handleChange(e)}/>
+                {errors.speed && (<p className={style.form}>{errors.speed}</p>)}
 
-            <label>Height: </label>
-            <input name='height' value={newItem.height} onChange={e => handleChange(e)}/>
-            {errors.height && (<p>{errors.height}</p>)}
+                <label className={style.form}>
+                    <h4>Height: </h4>
+                </label>
+                <input className={style.form} name='height' value={newItem.height} onChange={e => handleChange(e)}/>
+                {errors.height && (<p className={style.form}>{errors.height}</p>)}
 
-            <label>Weight: </label>
-            <input name='weight' value={newItem.weight} onChange={e => handleChange(e)}/>
-            {errors.weight && (<p>{errors.weight}</p>)}
+                <label className={style.form}>
+                    <h4>Weight: </h4>
+                </label>
+                <input className={style.form} name='weight' value={newItem.weight} onChange={e => handleChange(e)}/>
+                {errors.weight && (<p className={style.form}>{errors.weight}</p>)}
 
-            <label>Types: </label>
-            <select onChange={e => handleChangeSelected(e)}>
-                <option>All</option>
-                {types.length > 0 &&
-                    types.map(e => (
-                        <option key={e.id} value={e.id}>{e.name}</option>
-                    ))
-                }
-            </select>
-            <p>{selected.length} added types</p>
+                <label className={style.form}>
+                    <h4>Types: </h4>
+                </label>
+                <select className={style.form} onChange={e => handleChangeSelected(e)}>
+                    <option>Select types</option>
+                    {types.length > 0 &&
+                        types.map(e => (
+                            <option key={e.id} value={e.id}>{e.name}</option>
+                        ))
+                    }
+                </select>
+                <p className={style.form}>{selected.length} added types</p>
 
-            <button disabled={newItem.name && Object.entries(errors).length === 0 ? false : true} type="submit">Create</button>
-            <p>{message}</p>
-        </form>
+                <button id={style.button} disabled={newItem.name && Object.entries(errors).length === 0 ? false : true} type="submit">Create</button>
+                <p className={style.form}>{message}</p>
+            </form>
+        </div>
     )
 };
 

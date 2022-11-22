@@ -1,0 +1,31 @@
+#formContainer{
+    background-color: white;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    margin-left: 30%;
+    margin-right: 30%;
+    padding: 10px;
+}
+
+form label{
+    display: flex;
+    justify-content: center;
+    padding: 1px;
+}
+
+.form{
+    background-color: white;
+    margin: 5px;
+}
+
+#button{
+    margin: 5px;
+    border: #CCD1D1 solid 1px;
+    padding: 8px;
+    font-weight: 750;
+}
+
+#button:enabled:hover{
+    cursor: pointer;
+    background-color: #CCD1D1;
+}
