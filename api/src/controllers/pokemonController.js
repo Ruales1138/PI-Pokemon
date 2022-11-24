@@ -124,7 +124,7 @@ async function getDataByName(name) {
         }
         
     } catch (error) {
-        return error.message
+        return []
     }
 };
 
