@@ -10,6 +10,8 @@ export const ATTACK_ORDER = 'ATTACK_ORDER';
 export const ORIGIN_FILTER = 'ORIGIN_FILTER';
 export const TYPES_FILTER = 'TYPES_FILTER'
 export const CLEAN_DETAIL = 'CLEAN_DETAIL';
+export const LOADING = 'LOADING';
+export const ERROR = 'ERROR';
 
 export const getData = () => async (dispatch) => {
     let json = await axios.get('http://localhost:3001/pokemon');
@@ -60,4 +62,12 @@ export const typesFilter = (payload) => {
 
 export const cleanDetail = () => {
     return { type: CLEAN_DETAIL };
-  };
+};
+
+export const loadingFn = () => {
+    return { type: LOADING };
+};
+
+export const errorFn = () => {
+    return { type: ERROR };
+}

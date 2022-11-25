@@ -3,13 +3,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import SearchBar from "../SearchBar/SearchBar";
 import Card from "../Card/Card";
 import { Link } from "react-router-dom";
-import { getData, getTypes, alphabeticalOrder, attackOrder, originFilter, typesFilter } from '../../redux/actions';
+import { getData, getTypes, alphabeticalOrder, attackOrder, originFilter, typesFilter, loadingFn, errorFn } from '../../redux/actions';
 import style from './Home.module.css';
 
 function Home() {
     const [currentPage, setCurrentPage] = useState(1);
     const [order, setOrder] = useState('');
     const dispatch = useDispatch();
+    const loading = useSelector(state => state.loading);
     const types = useSelector(state => state.types);
     const data = useSelector(state => state.data);
     const last = currentPage * 12;
@@ -21,6 +22,13 @@ function Home() {
         dispatch(getData());
         dispatch(getTypes());
     }, [dispatch]);
+
+    function loadingTime() {
+        dispatch(loadingFn())
+        window.setTimeout(() => {
+            dispatch(errorFn())
+        }, 1000);
+    }
     
     function scrollToTop() {
         window.scrollTo({
@@ -40,12 +48,14 @@ function Home() {
     };
 
     function handleOrigin(e) {
+        loadingTime();
         dispatch(originFilter(e.target.value));
         setOrder(e.target.value);
         setCurrentPage(1);
     };
 
     function handleOrder(e) {
+        loadingTime();
         let value = e.target.value;
         if(value === 'A-Z' || value === 'Z-A') {
             dispatch(alphabeticalOrder(value));
@@ -60,6 +70,7 @@ function Home() {
     };
 
     function handleTypes(e) {
+        loadingTime();
         dispatch(typesFilter(e.target.value));
         setOrder(e.target.value);
         setCurrentPage(1);
@@ -120,7 +131,7 @@ function Home() {
                             </article>
                         )
                     })
-                    ) : (<h4 className={style.loading}>Loading...</h4>)
+                    ) : (<h4 className={style.loading}>{loading}</h4>)
                 }
             </section>
 

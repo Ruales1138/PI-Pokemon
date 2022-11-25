@@ -8,7 +8,9 @@ import {
     ATTACK_ORDER, 
     ORIGIN_FILTER, 
     TYPES_FILTER, 
-    CLEAN_DETAIL 
+    CLEAN_DETAIL,
+    LOADING,
+    ERROR
 } from "../actions";
 
 const initialState = {
@@ -16,7 +18,8 @@ const initialState = {
     dataCopy: [],
     detail: {},
     types: [],
-    names: []
+    names: [],
+    loading: 'Loading...'
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -132,6 +135,18 @@ const rootReducer = (state = initialState, action) => {
             return {
                 ...state,
                 detail: {}
+            };
+
+        case LOADING:
+            return {
+                ...state,
+                loading: 'Loading...'
+            };
+
+        case ERROR:
+            return {
+                ...state,
+                loading: 'No data'
             };
 
         default: 
