@@ -80,7 +80,7 @@ function Create() {
     };
 
     function handleChangeSelected(e) {
-        if(selected.length < 3) {
+        if(selected.length < 3 && !selected.includes(parseFloat(e.target.value))) {
             setSelected([
                 ...selected,
                 parseFloat(e.target.value)
